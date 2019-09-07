@@ -11,9 +11,14 @@ const code = fs.readFileSync('./code.txt', function(err){
     if (err) throw err;
 }).toString();
 
+const input_file = fs.readFileSync('./input.txt', function(err){
+    if (err) throw err;
+}).toString();
+
 let size = code.length;
 let pointer = 0;
 let loop_stack = [];
+let input_pointer = 0;
 
 let arr = [];
 for (let i = 0; i < arr_size; i++)
@@ -38,7 +43,8 @@ function main() {
                 process.stdout.write(String.fromCharCode(arr[pointer]))
             }; break;
             case ',': {
-                console.log('READ CHAR');
+                arr[pointer] = input_file[input_pointer].charCodeAt(0);
+                input_pointer++;
             }; break;
             case '[': {
                 if (arr[pointer] == 0)
